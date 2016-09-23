@@ -30,7 +30,6 @@
 #include <unordered_map>
 #include <utility>
 #include <vector>
-#include <cstdint> 
 
 #include <xlnt/xlnt_config.hpp>
 

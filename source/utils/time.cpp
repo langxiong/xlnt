@@ -22,7 +22,6 @@
 // @author: see AUTHORS file
 #include <cmath>
 #include <ctime>
-#include <cstdint> 
 
 #include <xlnt/utils/time.hpp>
 
