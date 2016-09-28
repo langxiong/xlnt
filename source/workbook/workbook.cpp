@@ -27,6 +27,7 @@
 #include <functional>
 #include <set>
 #include <sstream>
+#include <iterator>
 
 #include <detail/cell_impl.hpp>
 #include <detail/constants.hpp>
@@ -439,24 +440,24 @@ worksheet workbook::get_sheet_by_title(const std::string &title)
 
 worksheet workbook::get_sheet_by_index(std::size_t index)
 {
-	auto iter = d_->worksheets_.begin();
+    auto iter = std::next(d_->worksheets_.begin(), index);
 
-	for (std::size_t i = 0; i < index; ++i, ++iter)
-	{
-	}
-
+    if (iter == d_->worksheets_.end())
+    {
+        throw invalid_parameter();
+    }
 	return worksheet(&*iter);
 }
 
 const worksheet workbook::get_sheet_by_index(std::size_t index) const
 {
-	auto iter = d_->worksheets_.begin();
+    auto iter = std::next(d_->worksheets_.begin(), index);
 
-	for (std::size_t i = 0; i < index; ++i, ++iter)
-	{
-	}
-
-	return worksheet(&*iter);
+    if (iter == d_->worksheets_.end())
+    {
+        throw invalid_parameter();
+    }
+    return worksheet(&*iter);
 }
 
 worksheet workbook::get_sheet_by_id(std::size_t id)
